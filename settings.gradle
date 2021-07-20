@@ -1,0 +1,3 @@
+rootProject.name = "securityProject"
+include ':app'
+include ':sniffer'
