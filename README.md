@@ -29,7 +29,7 @@ dependencies {
 # How the request looks like?
 The handler collects the following:<br>
 Method, target url, headers, status code and how much time did it took<br>
-<img src ="pics/2.png" width="500"> 
+<img src ="pics/2.png" width="750"> 
 
 
 # Reporters
