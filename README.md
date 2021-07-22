@@ -60,6 +60,10 @@ function doPost (e) {
 }
 ``` 
 # How to use
+init the handler in the activity with context:
+```java
+HTTPHandler.init(this);
+```
 add desired reporters:
 ```java
 HTTPHandler.getInstance().addReporter(new ConsoleReporter());

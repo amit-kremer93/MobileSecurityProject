@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         MaterialButton postBTN = findViewById(R.id.post);
         MaterialButton getBTN = findViewById(R.id.get);
+        HTTPHandler.init(this);
         HTTPHandler.getInstance().addReporter(new ConsoleReporter());
         HTTPHandler.getInstance().addReporter(new FileReporter(this));
         HTTPHandler.getInstance().addReporter(new GoogleSheetsReporter("AKfycbz0aizzzXhB3Q1owyfwG3sOPku_CC3obD0SH8YS1DZI5XVBFjjRFdecWfDZwgU_-RqY"));

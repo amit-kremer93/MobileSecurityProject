@@ -1,5 +1,8 @@
 package com.amit.sniffer;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 import org.json.JSONObject;
@@ -23,7 +26,12 @@ public class HTTPHandler {
     private ArrayList<Reportable> mReporters;
     private String mUrl;
     private METHOD mMethod;
+    private static Context mContext;
 
+
+    public static void init(Context context) {
+        mContext = context;
+    }
 
     private HTTPHandler() {
         mClient = new OkHttpClient.Builder().readTimeout(3000, TimeUnit.MILLISECONDS).writeTimeout(3000, TimeUnit.MILLISECONDS).build();
@@ -57,6 +65,12 @@ public class HTTPHandler {
         return instance;
     }
 
+    private boolean isWifiConnected() {
+        ConnectivityManager connManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        return mWifi.isConnected();
+    }
+
     public void start() {
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -64,6 +78,7 @@ public class HTTPHandler {
                 HTTPRequestStringRepresentation httpStr = new HTTPRequestStringRepresentation();
                 httpStr.setmMethod(mMethod);
                 httpStr.setmUrl(mUrl);
+                httpStr.setWifiConnected(isWifiConnected());
                 httpStr.setmStartTime(System.currentTimeMillis());
                 Request request = null;
                 switch (mMethod) {

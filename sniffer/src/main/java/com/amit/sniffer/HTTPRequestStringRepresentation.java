@@ -7,8 +7,17 @@ public class HTTPRequestStringRepresentation {
     private int mStatusCode;
     private String mHeaders;
     private String mUrl;
+    private boolean isWifiConnected;
 
     public HTTPRequestStringRepresentation() {
+    }
+
+    public boolean isWifiConnected() {
+        return isWifiConnected;
+    }
+
+    public void setWifiConnected(boolean wifiConnected) {
+        isWifiConnected = wifiConnected;
     }
 
     public void setmStartTime(long mStartTime) {
@@ -62,6 +71,6 @@ public class HTTPRequestStringRepresentation {
 
     @Override
     public String toString() {
-        return "~~> " + mMethod + ": " + mUrl + ", Headers: " + mHeaders + ", returned with status code " + mStatusCode + " in " + (mEndTime - mStartTime) + " miliseconds\n";
+        return "~~> " + mMethod + ": " + mUrl + ", Headers: " + mHeaders + " sent on Wifi: "+ isWifiConnected+ " and returned with status code " + mStatusCode + " in " + (mEndTime - mStartTime) + " miliseconds\n";
     }
 }
